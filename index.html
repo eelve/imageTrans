@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>imageTrans</title>
+	<script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+	<style type="text/css" media="screen">
+		.outbox{
+			width: 400px;
+			height: 400px;
+			margin: 0 auto;
+			position: relative;
+			background-color: red;
+			border-radius: 50%;
+		}
+		.outbox img{
+			width: 98%;
+			height: 98%;
+			margin: 0 auto;
+			display: block;
+			position: relative;
+			top: 4px;
+			border-radius:50%;
+		}
+		.mes{
+			width: 200px;
+			height: 200px;
+			margin: 0 auto;
+			position: relative;
+			color: #ff5405;
+			margin-top: -200px;
+		}
+		.handel{
+			background-color: rebeccapurple;
+			width: 100px;
+			margin: 0 auto;
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<div class="outbox" style="display: none">
+		<img src="http://eelve.com/luez/images/8.jpeg"  id="img">
+		<div class="mes">
+			250万年前，人类自东非开始演化，此后200万年间人类不断演化。
+		</div>
+	</div>
+	<div class="handel">
+		<input type="button" name="start" value="start" onclick="start()">
+		<input type="button" name="stop" value="stop" onclick="stop()">
+	</div>
+	<div class="outbox">
+		<img src="http://eelve.com/luez/images/8.jpeg"  id="imgb">
+		<div class="mes">
+			250万年前，人类自东非开始演化，此后200万年间人类不断演化。
+		</div>
+	</div>
+	<script  type="text/javascript" charset="utf-8" async defer>
+		var ele ;
+		var trans = 0;
+		 $.fn.extend({
+		     rotate: function () {
+		         ele = this ;
+		         setInterval('singleRotate()',20);
+		     }
+		 });
+
+		var degree = 0;
+
+		function singleRotate() {		    
+		    degree = degree - 50 * Math.PI / 180;
+		    ele.css("transform","rotate("+degree+"deg)");
+		}
+		 function start(){
+		 	ele = $('#img');
+		 	if(trans == 0){
+		 		trans = setInterval('singleRotate()',20);
+		 	}		 	
+		 }
+		 function stop(){
+		 	window.clearInterval(trans);
+		 }
+		 $('#imgb').rotate();
+	</script>
+</body>
+</html>
